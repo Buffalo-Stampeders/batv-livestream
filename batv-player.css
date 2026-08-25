@@ -52,7 +52,7 @@ a:hover{color:var(--green)}
   border-bottom:6px solid var(--green);
 }
 .batv-eyebrow{
-  font-family:var(--util);font-weight:700;font-size:13px;
+  font-family:var(--util);font-weight:700;font-size:40px;
   letter-spacing:.16em;text-transform:uppercase;color:var(--orange);
   margin:0 0 3px;
 }
