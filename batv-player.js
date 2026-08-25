@@ -67,7 +67,7 @@ function labelFor(i){
   const id = ids[i];
   return CONFIG.titleOverrides[id] || titles[id] || 'Game ' + (i + 1);
 }
-function formatGameTime(id){
+function parseGameTime(id){
   const raw = CONFIG.gameTimes[id];
   if (!raw) return null;
   const m = raw.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
@@ -77,11 +77,25 @@ function formatGameTime(id){
   // with timeZone:'UTC'. This is a formatting trick, not a real conversion —
   // it renders exactly the Eastern-time numbers the admin typed, with no
   // dependence on (and no drift from) the viewer's own browser timezone.
-  const dt = new Date(Date.UTC(y, mo - 1, d, h, mi));
+  return new Date(Date.UTC(y, mo - 1, d, h, mi));
+}
+function formatGameTime(id){
+  const dt = parseGameTime(id);
+  if (!dt) return null;
   return new Intl.DateTimeFormat('en-US', {
     timeZone: 'UTC', month: 'short', day: 'numeric',
     hour: 'numeric', minute: '2-digit'
   }).format(dt) + ' ET';
+}
+function formatGameDateShort(id){
+  const dt = parseGameTime(id);
+  if (!dt) return null;
+  const month = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'short' }).format(dt);
+  const day = dt.getUTCDate();
+  const time = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'UTC', hour: 'numeric', minute: '2-digit'
+  }).format(dt);
+  return month + '. ' + day + ' · ' + time;
 }
 function updateNowFlag(isPlaying){
   const id = ids[current];
@@ -152,6 +166,11 @@ function waitForPlaylist(tries){
   const list = player.getPlaylist && player.getPlaylist();
   if (list && list.length){
     ids = list;
+    // A YT.Player onStateChange event can fire (and call syncIndex) before
+    // this point, painting the UI with an empty ids array — reset current
+    // so the syncIndex() call below is guaranteed to detect a "change" and
+    // do a full, correct repaint now that ids is actually populated.
+    current = -1;
     buildList();
     fetchTitles();
     if (startIndex > 0 && startIndex < ids.length){
@@ -236,7 +255,7 @@ function buildList(){
     btn.className = 'batv-game-btn';
     btn.type = 'button';
     btn.innerHTML =
-      '<span class="game-num">' + pad(i + 1) + '</span>' +
+      '<span class="game-num">' + (formatGameDateShort(id) || pad(i + 1)) + '</span>' +
       '<span class="game-thumb"><img alt="" loading="lazy" ' +
         'src="https://i.ytimg.com/vi/' + id + '/mqdefault.jpg" ' +
         'onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg\'"></span>' +
@@ -266,6 +285,7 @@ function syncIndex(){
 }
 
 function paintCurrent(){
+  if (!ids.length) return; // guard against a paint before ids is populated
   $('batv-posNow').textContent = pad(current + 1);
   $('batv-nowTitle').textContent = labelFor(current);
   $('batv-ytLink').href = 'https://www.youtube.com/watch?v=' + ids[current] + '&list=' + CONFIG.playlistId;
