@@ -58,7 +58,7 @@ $('batv-ytLink').href = 'https://www.youtube.com/playlist?list=' + CONFIG.playli
 
 const tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
-tag.onerror = () => fail('The player could not load.');
+tag.onerror = () => fail('The Player Could Not Load.');
 document.head.appendChild(tag);
 
 const __prevYTReady = window.onYouTubeIframeAPIReady;
@@ -88,7 +88,7 @@ function onReady(){
       list: CONFIG.playlistId,
       index: startIndex > 0 ? startIndex : 0
     });
-  } catch(err){ return fail('The playlist could not be loaded.'); }
+  } catch(err){ return fail('The Playlist Could Not Be Loaded.'); }
   $('batv-stageFallback').hidden = true;
   waitForPlaylist(0);
 }
@@ -100,7 +100,7 @@ function onError(e){
     if (current < ids.length - 1){ step(1); return; }
   }
   // 2 bad param · 5 HTML5 error · 100 not found · 153 config
-  fail('This video can\u2019t play in the embed (YouTube error ' + (code == null ? '?' : code) + ').');
+  fail('This Video Can\u2019t Play In The Embed (YouTube Error ' + (code == null ? '?' : code) + ').');
 }
 
 // getPlaylist() is not always populated the instant the player is ready.
@@ -117,7 +117,7 @@ function waitForPlaylist(tries){
     setInterval(syncIndex, 1000);            // catches auto-advance
     return;
   }
-  if (tries > 40) return fail('The playlist did not load.');
+  if (tries > 40) return fail('The Playlist Did Not Load.');
   setTimeout(() => waitForPlaylist(tries + 1), 250);
 }
 
@@ -125,20 +125,20 @@ function fail(msg){
   const el = $('batv-stageFallback');
   el.hidden = false;
   let extra = '<a href="https://www.youtube.com/playlist?list=' + CONFIG.playlistId +
-    '" target="_blank" rel="noopener">Watch the games on YouTube</a>';
+    '" target="_blank" rel="noopener">Watch The Games On YouTube</a>';
   if (location.protocol === 'file:'){
-    extra = 'Serve this page over http (a local server or the live site) rather than opening the file directly.<br>' + extra;
+    extra = 'Serve This Page Over http (A Local Server Or The Live Site) Rather Than Opening The File Directly.<br>' + extra;
   }
   el.innerHTML = msg + '<br>' + extra;
   $('batv-games').innerHTML = '';
   $('batv-listEmpty').hidden = false;
-  $('batv-listEmpty').textContent = 'The schedule appears once the player connects.';
+  $('batv-listEmpty').textContent = 'The Schedule Appears Once The Player Connects.';
 }
 
 function onStateChange(e){
   syncIndex();
   document.getElementById('now').classList.toggle('batv-is-playing', e.data === YT.PlayerState.PLAYING);
-  $('batv-nowFlagText').textContent = e.data === YT.PlayerState.PLAYING ? 'Now playing' : 'Selected';
+  $('batv-nowFlagText').textContent = e.data === YT.PlayerState.PLAYING ? 'Now Playing' : 'Selected';
 
   // Pick up the real title from the player itself as a backstop.
   const data = player.getVideoData && player.getVideoData();
@@ -201,7 +201,7 @@ function buildList(){
     li.appendChild(btn);
     ul.appendChild(li);
   });
-  $('batv-listCount').textContent = ids.length + ' games';
+  $('batv-listCount').textContent = ids.length + ' Games';
   $('batv-posTotal').textContent = pad(ids.length);
 }
 
