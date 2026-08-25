@@ -195,10 +195,7 @@ function buildList(){
       '<span class="game-thumb"><img alt="" loading="lazy" ' +
         'src="https://i.ytimg.com/vi/' + id + '/mqdefault.jpg" ' +
         'onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg\'"></span>' +
-      '<span class="game-meta">' +
-        '<span class="game-title">' + labelFor(i) + '</span>' +
-        '<span class="game-sub">Now playing</span>' +
-      '</span>';
+      '<span class="game-title">' + labelFor(i) + '</span>';
     btn.addEventListener('click', () => goTo(i));
 
     li.appendChild(btn);
