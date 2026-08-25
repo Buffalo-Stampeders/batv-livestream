@@ -46,15 +46,15 @@ a:hover{color:var(--green)}
 
 /* ---------- batv-masthead — echoes the site's green-underlined header ---------- */
 .batv-masthead{
-  display:flex;align-items:flex-end;justify-content:space-between;
+  display:flex;align-items:center;justify-content:space-between;
   gap:16px;flex-wrap:wrap;
-  padding-bottom:14px;margin-bottom:24px;
+  padding-bottom:8px;margin-bottom:16px;
   border-bottom:6px solid var(--green);
 }
 .batv-eyebrow{
   font-family:var(--util);font-weight:700;font-size:40px;
   letter-spacing:.16em;text-transform:uppercase;color:var(--orange);
-  margin:0 0 3px;
+  margin:0;
 }
 .batv-masthead h1{
   font-weight:700;font-size:clamp(28px,4.6vw,44px);line-height:.98;
