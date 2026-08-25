@@ -32,18 +32,18 @@ const CONFIG = {
   // Leave a game out of this object and its row just shows "Selected" /
   // "Now Playing" as before.
   gameTimes: {
-    'hIwq3iQEFiQ': '2026-12-28T12:55:00',   // Game 1
-    'H4mPjPjaz2M': '2026-12-28T14:55:00',   // Game 2
-    'gwOIAcif7sY': '2026-12-28T16:55:00',   // Game 3
-    'ea8mzB1GUTc': '2026-12-28T18:55:00',   // Game 4
-    'xCXI7VpO79g': '2026-12-29T12:55:00',   // Game 5
-    'vbsU5bIk3Qw': '2026-12-29T14:55:00',   // Game 6
-    '3LchQPigZ2s': '2026-12-29T16:55:00',   // Game 7
-    'qZ1AwFHgSR0': '2026-12-29T18:55:00',   // Game 8
-    'oZB4ocUkCwk': '2026-12-30T12:55:00',   // Game 9
-    'EBCJ0vbsDrc': '2026-12-30T14:55:00',   // Game 10
-    'Dn1MeagRoLU': '2026-12-30T16:55:00',   // Game 11
-    '0GwNw82xYRU': '2026-12-30T18:55:00'    // Game 12
+    'hIwq3iQEFiQ': '2026-12-28T13:00:00',   // Game 1
+    'H4mPjPjaz2M': '2026-12-28T15:00:00',   // Game 2
+    'gwOIAcif7sY': '2026-12-28T17:00:00',   // Game 3
+    'ea8mzB1GUTc': '2026-12-28T19:00:00',   // Game 4
+    'xCXI7VpO79g': '2026-12-29T13:00:00',   // Game 5
+    'vbsU5bIk3Qw': '2026-12-29T15:00:00',   // Game 6
+    '3LchQPigZ2s': '2026-12-29T17:00:00',   // Game 7
+    'qZ1AwFHgSR0': '2026-12-29T19:00:00',   // Game 8
+    'oZB4ocUkCwk': '2026-12-30T13:00:00',   // Game 9
+    'EBCJ0vbsDrc': '2026-12-30T15:00:00',   // Game 10
+    'Dn1MeagRoLU': '2026-12-30T17:00:00',   // Game 11
+    '0GwNw82xYRU': '2026-12-30T19:00:00'    // Game 12
   }
 };
 
