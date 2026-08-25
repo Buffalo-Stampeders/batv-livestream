@@ -71,7 +71,7 @@ a:hover{color:var(--green)}
 .batv-yt-link:hover{background:var(--green);border-color:var(--green);color:#fff}
 
 /* ---------- layout ---------- */
-.batv-grid{display:batv-grid;grid-template-columns:minmax(0,1fr) 372px;gap:26px;align-items:start}
+.batv-grid{display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:26px;align-items:start}
 @media (max-width:960px){.batv-grid{grid-template-columns:minmax(0,1fr);gap:22px}}
 
 /* ---------- player column ---------- */
@@ -82,7 +82,7 @@ a:hover{color:var(--green)}
 }
 .batv-stage iframe{width:100%;height:100%;border:0;display:block}
 .batv-stage-fallback{
-  position:absolute;inset:0;display:batv-grid;place-content:center;gap:10px;
+  position:absolute;inset:0;display:grid;place-content:center;gap:10px;
   text-align:center;padding:24px;color:#C7D6CC;
   font-family:var(--util);letter-spacing:.04em;font-size:15px;
 }
@@ -168,7 +168,7 @@ a:hover{color:var(--green)}
 .batv-game{margin:0}
 .batv-game-btn{
   position:relative;width:100%;text-align:left;
-  display:batv-grid;grid-template-columns:26px 108px minmax(0,1fr);
+  display:grid;grid-template-columns:26px 108px minmax(0,1fr);
   align-items:center;gap:11px;
   padding:9px 10px 9px 8px;border-radius:var(--radius);
   transition:background .16s;
