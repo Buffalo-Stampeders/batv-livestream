@@ -160,46 +160,37 @@ a:hover{color:var(--green)}
 .batv-search::placeholder{color:var(--dim)}
 .batv-search:focus{outline:none;border-color:var(--green)}
 
-.batv-games{list-style:none;margin:0;padding:6px;overflow-y:auto;max-height:min(64vh,620px);scrollbar-width:thin;scrollbar-color:var(--line) transparent}
-@media (max-width:960px){.batv-games{max-height:420px}}
-.batv-games::-webkit-scrollbar{width:9px}
-.batv-games::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+.batv-games{
+  list-style:none;margin:0;padding:10px;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+}
+@media (max-width:420px){.batv-games{grid-template-columns:1fr}}
 
 .batv-game{margin:0}
 .batv-game-btn{
   position:relative;width:100%;text-align:left;
-  display:grid;grid-template-columns:26px 108px minmax(0,1fr);
-  align-items:center;gap:11px;
-  padding:9px 10px 9px 8px;border-radius:var(--radius);
+  display:flex;flex-direction:column;gap:7px;
+  padding:7px;border-radius:var(--radius);
   transition:background .16s;
 }
 .batv-game-btn:hover{background:var(--stage-2)}
 .batv-game-num{
-  font-family:var(--display);font-weight:700;font-size:17px;
-  color:var(--dim);text-align:right;font-variant-numeric:tabular-nums;
+  font-family:var(--display);font-weight:700;font-size:13px;
+  color:var(--dim);font-variant-numeric:tabular-nums;
 }
 .batv-game-thumb{
-  position:relative;aspect-ratio:16/9;background:#000;
+  position:relative;width:100%;aspect-ratio:16/9;background:#000;
   border-radius:2px;overflow:hidden;border:1px solid var(--line);
 }
 .batv-game-thumb img{width:100%;height:100%;object-fit:cover}
 .batv-game-title{
-  font-family:var(--body);font-size:15px;line-height:1.24;font-weight:400;color:var(--ink);
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
-}
-.batv-game-sub{
-  display:none;
-  font-family:var(--util);font-weight:700;font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--green);margin-top:3px;
+  font-family:var(--body);font-size:14px;line-height:1.24;font-weight:400;color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
 .batv-game.batv-is-live .batv-game-btn{background:var(--stage-2)}
-.batv-game.batv-is-live .batv-game-btn::before{
-  content:"";position:absolute;left:0;top:7px;bottom:7px;width:3px;
-  background:var(--green);border-radius:3px;
-}
+.batv-game.batv-is-live .batv-game-thumb{border-color:var(--green);border-width:2px}
 .batv-game.batv-is-live .batv-game-num{color:var(--green)}
 .batv-game.batv-is-live .batv-game-title{color:var(--green);font-weight:700}
-.batv-game.batv-is-live .batv-game-sub{display:block}
 .batv-game[hidden]{display:none}
 
 .batv-list-empty{padding:20px 15px;color:var(--dim);font-size:15px}
