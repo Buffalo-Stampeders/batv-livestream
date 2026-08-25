@@ -86,6 +86,7 @@ a:hover{color:var(--green)}
   text-align:center;padding:24px;color:#C7D6CC;
   font-family:var(--util);letter-spacing:.04em;font-size:15px;
 }
+.batv-stage-fallback[hidden]{display:none}
 .batv-stage-fallback a{color:#fff;text-decoration:underline}
 
 .batv-now{margin:18px 0 0}
