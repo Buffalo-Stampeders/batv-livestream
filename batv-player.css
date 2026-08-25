@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Slab:wght@500;600;700&display=swap');
+
+/* ============================================================
+   THEME — mirrors the battleatthevillages.com WordPress theme.
+   Green #00492c and orange #cd6636 per brand; cream #EEE5D1
+   accent panels, Rockwell headings, PT Sans body — as on the site.
+   Change the hexes here and the whole page follows.
+   ============================================================ */
+.batv-shell{
+  --court:  #FFFFFF;  /* page background — white (site base) */
+  --batv-stage:  #EEE5D1;  /* panel surface — site cream accent */
+  --stage-2:#E4D8BC;  /* row hover / active — cream, one step down */
+  --line:   #D8CBA8;  /* hairlines on cream */
+  --green:  #00492C;  /* primary — headings, numerals, active, buttons */
+  --orange: #CD6636;  /* accent — links + subtle player touches */
+  --ink:    #141414;  /* body text — near-black, as site body copy */
+  --dim:    #5E6E61;  /* secondary text — muted green-gray */
+
+  --radius: 3px;
+  --shell-max: 1240px;
+
+  --display: Rockwell, "Rockwell Nova", "Roboto Slab", Georgia, serif;
+  --body: "PT Sans", Arial, sans-serif;
+  --util: Rockwell, "Rockwell Nova", "Roboto Slab", Georgia, serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--court);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.5;
+}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2{font-family:var(--display);color:var(--green);line-height:normal;margin:0}
+a{color:var(--orange);text-decoration:none}
+a:hover{color:var(--green)}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+::selection{background:var(--green);color:#fff}
+
+.batv-shell{max-width:var(--shell-max);margin:0 auto;padding:26px 20px 44px}
+
+/* ---------- batv-masthead — echoes the site's green-underlined header ---------- */
+.batv-masthead{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;
+  padding-bottom:14px;margin-bottom:24px;
+  border-bottom:6px solid var(--green);
+}
+.batv-eyebrow{
+  font-family:var(--util);font-weight:700;font-size:13px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--orange);
+  margin:0 0 3px;
+}
+.batv-masthead h1{
+  font-weight:700;font-size:clamp(28px,4.6vw,44px);line-height:.98;
+  letter-spacing:.005em;
+}
+.batv-masthead h1 em{font-style:normal;color:var(--green)}
+.batv-yt-link{
+  font-family:var(--util);font-weight:700;font-size:14px;
+  letter-spacing:.03em;color:var(--green);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:9px 15px;white-space:nowrap;
+  transition:background .18s,border-color .18s,color .18s;
+}
+.batv-yt-link:hover{background:var(--green);border-color:var(--green);color:#fff}
+
+/* ---------- layout ---------- */
+.batv-grid{display:batv-grid;grid-template-columns:minmax(0,1fr) 372px;gap:26px;align-items:start}
+@media (max-width:960px){.batv-grid{grid-template-columns:minmax(0,1fr);gap:22px}}
+
+/* ---------- player column ---------- */
+.batv-stage{
+  position:relative;aspect-ratio:16/9;width:100%;
+  background:#000;border:1px solid var(--green);border-radius:var(--radius);
+  overflow:hidden;
+}
+.batv-stage iframe{width:100%;height:100%;border:0;display:block}
+.batv-stage-fallback{
+  position:absolute;inset:0;display:batv-grid;place-content:center;gap:10px;
+  text-align:center;padding:24px;color:#C7D6CC;
+  font-family:var(--util);letter-spacing:.04em;font-size:15px;
+}
+.batv-stage-fallback a{color:#fff;text-decoration:underline}
+
+.batv-now{margin:18px 0 0}
+.batv-now-title{
+  font-weight:700;font-size:clamp(20px,2.4vw,27px);line-height:1.08;
+  min-height:1.08em;
+}
+.batv-now-flag{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--util);font-weight:700;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--orange);
+  margin-bottom:6px;
+}
+.batv-pip{width:8px;height:8px;border-radius:50%;background:var(--orange);flex:none}
+.batv-is-playing .batv-pip{animation:batv-pulse 1.8s ease-in-out infinite}
+@keyframes batv-pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ---------- batv-transport — the scoreboard ---------- */
+.batv-transport{
+  display:flex;align-items:center;gap:14px;
+  margin-top:16px;padding:12px 14px;
+  background:var(--batv-stage);border:1px solid var(--line);border-radius:var(--radius);
+}
+.batv-tbtn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--util);font-weight:700;font-size:15px;
+  letter-spacing:.02em;color:var(--green);
+  padding:10px 16px;border:1px solid var(--green);border-radius:var(--radius);
+  background:var(--court);
+  transition:background .18s,border-color .18s,color .18s;
+}
+.batv-tbtn:hover:not(:disabled){background:var(--orange);border-color:var(--orange);color:#fff}
+.batv-tbtn:disabled{opacity:.32;cursor:default}
+.batv-tbtn svg{width:13px;height:13px;fill:currentColor;flex:none}
+.batv-tbtn-next{margin-left:auto}
+
+.batv-pos{
+  display:flex;align-items:baseline;gap:5px;
+  font-family:var(--display);font-weight:700;line-height:1;margin:0;
+  user-select:none;
+}
+.batv-pos-now{font-size:34px;color:var(--green);font-variant-numeric:tabular-nums}
+.batv-pos-sep{font-size:20px;color:var(--line)}
+.batv-pos-total{font-size:20px;color:var(--dim);font-variant-numeric:tabular-nums}
+.batv-pos-label{
+  font-family:var(--util);font-weight:700;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dim);align-self:center;margin-left:2px;
+}
+@media (max-width:560px){
+  .batv-transport{flex-wrap:wrap;justify-content:center}
+  .batv-tbtn{flex:1 1 auto;justify-content:center}
+  .batv-tbtn-next{margin-left:0}
+  .batv-pos{order:-1;width:100%;justify-content:center;padding-bottom:4px}
+}
+
+/* ---------- playlist column ---------- */
+.batv-list-panel{
+  background:var(--batv-stage);border:1px solid var(--line);border-radius:var(--radius);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.batv-list-head{padding:14px 15px 12px;border-bottom:1px solid var(--line)}
+.batv-list-head h2{
+  font-weight:700;font-size:20px;line-height:1;margin:0 0 10px;
+}
+.batv-list-head h2 span{color:var(--dim);font-size:14px;margin-left:7px;font-family:var(--body)}
+.batv-search{
+  width:100%;padding:9px 11px;
+  background:var(--court);color:var(--ink);
+  border:1px solid var(--line);border-radius:var(--radius);
+  font-family:var(--body);font-size:16px;
+}
+.batv-search::placeholder{color:var(--dim)}
+.batv-search:focus{outline:none;border-color:var(--green)}
+
+.batv-games{list-style:none;margin:0;padding:6px;overflow-y:auto;max-height:min(64vh,620px);scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+@media (max-width:960px){.batv-games{max-height:420px}}
+.batv-games::-webkit-scrollbar{width:9px}
+.batv-games::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+
+.batv-game{margin:0}
+.batv-game-btn{
+  position:relative;width:100%;text-align:left;
+  display:batv-grid;grid-template-columns:26px 108px minmax(0,1fr);
+  align-items:center;gap:11px;
+  padding:9px 10px 9px 8px;border-radius:var(--radius);
+  transition:background .16s;
+}
+.batv-game-btn:hover{background:var(--stage-2)}
+.batv-game-num{
+  font-family:var(--display);font-weight:700;font-size:17px;
+  color:var(--dim);text-align:right;font-variant-numeric:tabular-nums;
+}
+.batv-game-thumb{
+  position:relative;aspect-ratio:16/9;background:#000;
+  border-radius:2px;overflow:hidden;border:1px solid var(--line);
+}
+.batv-game-thumb img{width:100%;height:100%;object-fit:cover}
+.batv-game-title{
+  font-family:var(--body);font-size:15px;line-height:1.24;font-weight:400;color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.batv-game-sub{
+  display:none;
+  font-family:var(--util);font-weight:700;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--green);margin-top:3px;
+}
+.batv-game.batv-is-live .batv-game-btn{background:var(--stage-2)}
+.batv-game.batv-is-live .batv-game-btn::before{
+  content:"";position:absolute;left:0;top:7px;bottom:7px;width:3px;
+  background:var(--green);border-radius:3px;
+}
+.batv-game.batv-is-live .batv-game-num{color:var(--green)}
+.batv-game.batv-is-live .batv-game-title{color:var(--green);font-weight:700}
+.batv-game.batv-is-live .batv-game-sub{display:block}
+.batv-game[hidden]{display:none}
+
+.batv-list-empty{padding:20px 15px;color:var(--dim);font-size:15px}
+
+/* ---------- batv-skeleton ---------- */
+.batv-skeleton .batv-game-title{
+  color:transparent;background:var(--line);border-radius:2px;
+  animation:batv-breathe 1.6s ease-in-out infinite;
+}
+@keyframes batv-breathe{0%,100%{opacity:.7}50%{opacity:.35}}
+
+.batv-foot{
+  margin-top:26px;padding-top:14px;border-top:1px solid var(--line);
+  font-family:var(--util);font-weight:700;font-size:12px;letter-spacing:.06em;
+  color:var(--dim);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+.batv-kbd{border:1px solid var(--line);border-radius:3px;padding:1px 6px;color:var(--green)}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
